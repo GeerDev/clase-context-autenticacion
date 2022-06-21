@@ -2,6 +2,7 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext/UserState";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 
 function Header() {
   const { token, logout } = useContext(UserContext);
@@ -16,22 +17,30 @@ function Header() {
       <div>
         {token ? (
           <>
-            <span onClick={logoutUser}>
-              <Link to="/">Logout</Link>
-            </span>
             <span>
-              <Link to="/profile">Profile</Link>
+              <Link to="/products">Products</Link>
+              <span onClick={logoutUser}>
+                <span>
+                  <Link to="/profile">Profile</Link>
+                </span>
+                <span>
+                  <Link to="/cart">
+                    <ShoppingCartOutlined />
+                  </Link>
+                </span>
+                <Link to="/">Logout</Link>
+              </span>
             </span>
           </>
         ) : (
-        <>
-          <span>
-            <Link to="/register">Register</Link>
-          </span>
-          <span>
-            <Link to="/">Login</Link>
-          </span>
-        </>
+          <>
+            <span>
+              <Link to="/register">Register</Link>
+            </span>
+            <span>
+              <Link to="/">Login</Link>
+            </span>
+          </>
         )}
       </div>
     </nav>
